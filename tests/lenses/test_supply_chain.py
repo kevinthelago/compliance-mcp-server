@@ -92,10 +92,12 @@ def test_both_absent_returns_not_run(tmp_path: Path) -> None:
 
 
 def test_denied_license_produces_finding(tmp_path: Path) -> None:
-    sbom = make_sbom([
-        {"name": "gpl-lib", "version": "1.0.0", "licenses": ["GPL-3.0-only"]},
-        {"name": "safe-lib", "version": "2.0.0", "licenses": ["MIT"]},
-    ])
+    sbom = make_sbom(
+        [
+            {"name": "gpl-lib", "version": "1.0.0", "licenses": ["GPL-3.0-only"]},
+            {"name": "safe-lib", "version": "2.0.0", "licenses": ["MIT"]},
+        ]
+    )
     syft = make_syft_adapter(sbom=sbom)
     trivy = make_trivy_adapter()
     lens = SupplyChainLens(policy_dir=POLICY_DIR, syft_adapter=syft, trivy_adapter=trivy)
@@ -125,9 +127,11 @@ def test_combined_sbom_and_cve(tmp_path: Path, trivy_fixture_json: str) -> None:
     """Fixture scenario: denied-license dep AND known-CVE dep — both surface."""
     from compliance_mcp.adapters.trivy import _parse_trivy_json
 
-    sbom = make_sbom([
-        {"name": "gpl-lib", "version": "1.0.0", "licenses": ["GPL-3.0-only"]},
-    ])
+    sbom = make_sbom(
+        [
+            {"name": "gpl-lib", "version": "1.0.0", "licenses": ["GPL-3.0-only"]},
+        ]
+    )
     cve_findings = _parse_trivy_json(trivy_fixture_json, target=str(tmp_path))
     syft = make_syft_adapter(sbom=sbom)
     trivy = make_trivy_adapter(findings=cve_findings)

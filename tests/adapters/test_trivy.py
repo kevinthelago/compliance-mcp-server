@@ -58,44 +58,56 @@ def test_parse_trivy_json_suggestion_with_fix(trivy_fixture_json: str) -> None:
 
 
 def test_parse_trivy_json_no_fix() -> None:
-    data = json.dumps({
-        "SchemaVersion": 2,
-        "Results": [{
-            "Target": "go.sum",
-            "Class": "lang-pkgs",
-            "Type": "gomod",
-            "Vulnerabilities": [{
-                "VulnerabilityID": "CVE-2099-0001",
-                "PkgName": "some-lib",
-                "InstalledVersion": "1.0.0",
-                "FixedVersion": "",
-                "Severity": "LOW",
-                "Title": "Minor issue",
-                "Description": "A low severity issue.",
-            }],
-        }],
-    })
+    data = json.dumps(
+        {
+            "SchemaVersion": 2,
+            "Results": [
+                {
+                    "Target": "go.sum",
+                    "Class": "lang-pkgs",
+                    "Type": "gomod",
+                    "Vulnerabilities": [
+                        {
+                            "VulnerabilityID": "CVE-2099-0001",
+                            "PkgName": "some-lib",
+                            "InstalledVersion": "1.0.0",
+                            "FixedVersion": "",
+                            "Severity": "LOW",
+                            "Title": "Minor issue",
+                            "Description": "A low severity issue.",
+                        }
+                    ],
+                }
+            ],
+        }
+    )
     findings = _parse_trivy_json(data, target=".")
     assert findings[0].suggestion == "No fix available yet."
 
 
 def test_parse_trivy_json_fallback_severity_no_cvss() -> None:
-    data = json.dumps({
-        "SchemaVersion": 2,
-        "Results": [{
-            "Target": "Cargo.lock",
-            "Class": "lang-pkgs",
-            "Type": "cargo",
-            "Vulnerabilities": [{
-                "VulnerabilityID": "CVE-2099-0002",
-                "PkgName": "rust-lib",
-                "InstalledVersion": "0.1.0",
-                "Severity": "CRITICAL",
-                "Title": "Serious issue",
-                "Description": ".",
-            }],
-        }],
-    })
+    data = json.dumps(
+        {
+            "SchemaVersion": 2,
+            "Results": [
+                {
+                    "Target": "Cargo.lock",
+                    "Class": "lang-pkgs",
+                    "Type": "cargo",
+                    "Vulnerabilities": [
+                        {
+                            "VulnerabilityID": "CVE-2099-0002",
+                            "PkgName": "rust-lib",
+                            "InstalledVersion": "0.1.0",
+                            "Severity": "CRITICAL",
+                            "Title": "Serious issue",
+                            "Description": ".",
+                        }
+                    ],
+                }
+            ],
+        }
+    )
     findings = _parse_trivy_json(data, target=".")
     assert findings[0].severity == Severity.CRITICAL
 
@@ -106,10 +118,12 @@ def test_parse_trivy_json_invalid_json() -> None:
 
 
 def test_parse_trivy_json_no_vulnerabilities() -> None:
-    data = json.dumps({
-        "SchemaVersion": 2,
-        "Results": [{"Target": "requirements.txt", "Class": "lang-pkgs", "Type": "pip"}],
-    })
+    data = json.dumps(
+        {
+            "SchemaVersion": 2,
+            "Results": [{"Target": "requirements.txt", "Class": "lang-pkgs", "Type": "pip"}],
+        }
+    )
     findings = _parse_trivy_json(data, target=".")
     assert findings == []
 

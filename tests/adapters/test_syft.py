@@ -63,19 +63,23 @@ def test_sbom_as_package_dicts(cyclonedx_fixture_json: str) -> None:
 
 
 def test_sbom_as_package_dicts_joins_multiple_licenses() -> None:
-    data = json.dumps({
-        "bomFormat": "CycloneDX",
-        "specVersion": "1.4",
-        "components": [{
-            "name": "dual",
-            "version": "1.0",
-            "purl": "pkg:pypi/dual@1.0",
-            "licenses": [
-                {"license": {"id": "MIT"}},
-                {"license": {"id": "Apache-2.0"}},
+    data = json.dumps(
+        {
+            "bomFormat": "CycloneDX",
+            "specVersion": "1.4",
+            "components": [
+                {
+                    "name": "dual",
+                    "version": "1.0",
+                    "purl": "pkg:pypi/dual@1.0",
+                    "licenses": [
+                        {"license": {"id": "MIT"}},
+                        {"license": {"id": "Apache-2.0"}},
+                    ],
+                }
             ],
-        }],
-    })
+        }
+    )
     sbom = parse_cyclonedx(data, target=".")
     pkg_dicts = sbom.as_package_dicts()
     assert pkg_dicts[0]["license"] == "MIT OR Apache-2.0"

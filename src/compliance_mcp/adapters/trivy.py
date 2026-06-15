@@ -79,7 +79,8 @@ def _parse_trivy_json(raw_json: str, target: str) -> list[Finding]:
                     cvss_score = float(score)
 
             severity: Severity = (
-                cvss_to_severity(cvss_score) if cvss_score is not None
+                cvss_to_severity(cvss_score)
+                if cvss_score is not None
                 else native_to_severity(native_sev)
             )
 
@@ -122,7 +123,8 @@ class TrivyAdapter:
         cmd = [
             "trivy",
             "fs",
-            "--format", "json",
+            "--format",
+            "json",
             "--quiet",
         ]
         if skip_db_update:

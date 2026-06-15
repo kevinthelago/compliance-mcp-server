@@ -104,9 +104,7 @@ class SupplyChainLens:
             log.error("supply-chain lens: trivy error: %s", trivy_result.stderr[:100])
         else:
             if trivy_result.degraded:
-                diagnostics_parts.append(
-                    f"trivy degraded: {trivy_result.degraded_reason}"
-                )
+                diagnostics_parts.append(f"trivy degraded: {trivy_result.degraded_reason}")
             ran_count += 1
             all_findings.extend(cve_findings)
 

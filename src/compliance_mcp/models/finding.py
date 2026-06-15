@@ -95,13 +95,15 @@ class Finding(BaseModel):
             return self
         # Normalise path to POSIX before hashing — replaces Windows backslashes
         posix_path = self.file_path.replace("\\", "/")
-        canonical = "|".join([
-            self.lens.value,
-            self.domain.value,
-            self.rule_id,
-            str(PurePosixPath(posix_path)),
-            str(self.line_start),
-        ])
+        canonical = "|".join(
+            [
+                self.lens.value,
+                self.domain.value,
+                self.rule_id,
+                str(PurePosixPath(posix_path)),
+                str(self.line_start),
+            ]
+        )
         digest = hashlib.sha256(canonical.encode()).hexdigest()
         object.__setattr__(self, "fingerprint", digest)
         return self
