@@ -78,9 +78,7 @@ class TestComplianceGate:
     async def test_low_finding_passes_at_medium_threshold(self, tmp_path) -> None:
         low = _make_finding(Severity.LOW)
         _REGISTRY[Lens.SOC2] = _stub_lens([low])
-        result = await compliance_gate(
-            str(tmp_path), lenses=["soc2"], severity_threshold="medium"
-        )
+        result = await compliance_gate(str(tmp_path), lenses=["soc2"], severity_threshold="medium")
         assert result["passed"] is True
 
     @pytest.mark.asyncio
@@ -159,9 +157,7 @@ class TestGenerateReport:
     async def test_finding_appears_in_report(self, tmp_path) -> None:
         high = _make_finding(Severity.HIGH)
         _REGISTRY[Lens.SOC2] = _stub_lens([high])
-        result = await generate_report(
-            str(tmp_path), output_format="markdown", lenses=["soc2"]
-        )
+        result = await generate_report(str(tmp_path), output_format="markdown", lenses=["soc2"])
         assert high.rule_id in result["content"]
 
     @pytest.mark.asyncio

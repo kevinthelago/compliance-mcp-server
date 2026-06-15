@@ -56,9 +56,7 @@ class TestLoadBaseline:
 
     def test_mixed_format(self, tmp_path: Path) -> None:
         p = tmp_path / "baseline.json"
-        p.write_text(
-            json.dumps(["plain-fp", {"fingerprint": "annotated-fp", "reason": "test"}])
-        )
+        p.write_text(json.dumps(["plain-fp", {"fingerprint": "annotated-fp", "reason": "test"}]))
         entries = load_baseline(p)
         assert len(entries) == 2
         assert entries[0].fingerprint == "plain-fp"

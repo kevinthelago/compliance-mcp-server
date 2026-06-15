@@ -101,9 +101,7 @@ async def compliance_gate(
     settings = load_settings()
 
     # Resolve severity threshold
-    threshold = (
-        Severity(severity_threshold) if severity_threshold else settings.severity_threshold
-    )
+    threshold = Severity(severity_threshold) if severity_threshold else settings.severity_threshold
 
     # Run scan
     all_findings, ran, skipped = await _run_scan(project_path, lenses, settings)

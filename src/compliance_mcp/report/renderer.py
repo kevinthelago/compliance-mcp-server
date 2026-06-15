@@ -77,9 +77,7 @@ def render_report(
     for dom in _DOMAIN_ORDER:
         if dom in by_domain_sev:
             ordered[dom] = {
-                sev: by_domain_sev[dom][sev]
-                for sev in _SEVERITY_ORDER
-                if sev in by_domain_sev[dom]
+                sev: by_domain_sev[dom][sev] for sev in _SEVERITY_ORDER if sev in by_domain_sev[dom]
             }
 
     rendered = template.render(
