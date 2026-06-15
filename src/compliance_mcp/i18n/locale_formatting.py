@@ -69,9 +69,7 @@ _JS_PATTERNS: list[tuple[re.Pattern[str], str, str]] = [
 _PY_PATTERNS: list[tuple[re.Pattern[str], str, str]] = [
     (
         # str() wrapping a date/datetime variable
-        re.compile(
-            r"\bstr\s*\(\s*(?:date|datetime|time|dt|d|t|created_at|updated_at|timestamp)\b"
-        ),
+        re.compile(r"\bstr\s*\(\s*(?:date|datetime|time|dt|d|t|created_at|updated_at|timestamp)\b"),
         "i18n/non-locale-date",
         "str() on a date/datetime is not locale-aware; use babel.dates.format_date() or similar",
     ),
@@ -91,17 +89,13 @@ _PY_PATTERNS: list[tuple[re.Pattern[str], str, str]] = [
     ),
     (
         # str() on a price/amount/number variable
-        re.compile(
-            r"\bstr\s*\(\s*(?:price|amount|total|cost|fee|balance|num(?:ber)?|count)\b"
-        ),
+        re.compile(r"\bstr\s*\(\s*(?:price|amount|total|cost|fee|balance|num(?:ber)?|count)\b"),
         "i18n/non-locale-number",
         "str() on a number is not locale-aware; use babel.numbers.format_number() or similar",
     ),
     (
         # f-string with a price/amount variable
-        re.compile(
-            r'f["\'].*\{(?:price|amount|total|cost|fee|balance)\b[^}]*\}'
-        ),
+        re.compile(r'f["\'].*\{(?:price|amount|total|cost|fee|balance)\b[^}]*\}'),
         "i18n/non-locale-number",
         "Formatting a number/currency in an f-string is not locale-aware; "
         "use a locale-aware formatter",

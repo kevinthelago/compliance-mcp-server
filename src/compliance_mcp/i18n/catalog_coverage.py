@@ -111,11 +111,7 @@ def _load_po_catalog(path: Path) -> dict[str, str]:
         po = polib.pofile(str(path))
     except OSError:
         return {}
-    return {
-        entry.msgid: entry.msgstr
-        for entry in po
-        if not entry.obsolete
-    }
+    return {entry.msgid: entry.msgstr for entry in po if not entry.obsolete}
 
 
 def _discover_catalogs(
@@ -170,9 +166,7 @@ def check_catalog_coverage(
     - ``required_locales``: list[str] — locales that must have complete catalogs
     - ``catalog_dirs``: list[str] — directory names to search (default: standard set)
     """
-    required_locales: list[str] = [
-        lc.lower() for lc in config.get("required_locales", ["en"])
-    ]
+    required_locales: list[str] = [lc.lower() for lc in config.get("required_locales", ["en"])]
     catalog_dir_names: tuple[str, ...] = tuple(
         config.get("catalog_dirs", list(_DEFAULT_CATALOG_DIRS))
     )
@@ -211,8 +205,7 @@ def check_catalog_coverage(
                     severity=Severity.ERROR,
                     message=f"Required locale '{locale}' has no catalog",
                     detail=(
-                        f"Create a catalog for '{locale}' in one of: "
-                        f"{', '.join(catalog_dir_names)}"
+                        f"Create a catalog for '{locale}' in one of: {', '.join(catalog_dir_names)}"
                     ),
                 )
             )
@@ -248,8 +241,7 @@ def check_catalog_coverage(
                     severity=Severity.WARNING,
                     message=f"Key '{key}' has empty translation in locale '{locale}'",
                     detail=(
-                        f"Provide a non-empty translation for '{key}' "
-                        f"in the '{locale}' catalog."
+                        f"Provide a non-empty translation for '{key}' in the '{locale}' catalog."
                     ),
                 )
             )

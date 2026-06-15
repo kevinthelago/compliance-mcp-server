@@ -1,4 +1,5 @@
 """Python view fixtures for i18n testing."""
+
 import logging
 from datetime import datetime
 

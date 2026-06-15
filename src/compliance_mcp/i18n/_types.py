@@ -39,8 +39,7 @@ except ImportError:
     class Lens(Protocol):  # type: ignore[no-redef]
         name: str
 
-        def run(self, ctx: ScanContext) -> list[Finding]:
-            ...
+        def run(self, ctx: ScanContext) -> list[Finding]: ...
 
 
 __all__ = ["Finding", "Lens", "ScanContext", "Severity"]

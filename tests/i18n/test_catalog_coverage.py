@@ -177,9 +177,7 @@ def test_po_empty_translation_reported():
 def test_custom_catalog_dir(tmp_path):
     tr_dir = tmp_path / "translations"
     tr_dir.mkdir()
-    (tr_dir / "en.json").write_text(
-        '{"title": "Hello", "body": "World"}', encoding="utf-8"
-    )
+    (tr_dir / "en.json").write_text('{"title": "Hello", "body": "World"}', encoding="utf-8")
     (tr_dir / "fr.json").write_text('{"title": "Bonjour"}', encoding="utf-8")
 
     ctx = ScanContext(root=tmp_path, files=[], config={})

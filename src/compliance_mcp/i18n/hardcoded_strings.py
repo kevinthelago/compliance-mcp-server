@@ -178,10 +178,7 @@ def _make_finding(
         col=col,
         severity=severity,
         message=f'Hardcoded string "{literal[:60]}" may need i18n',
-        detail=(
-            f"confidence={confidence}; "
-            f"suggested key: {key!r}"
-        ),
+        detail=(f"confidence={confidence}; suggested key: {key!r}"),
         suggestion=f"Replace with t('{key}') or equivalent catalog lookup.",
         extra={"literal": literal, "suggested_key": key, "confidence": confidence},
     )
@@ -306,9 +303,7 @@ def _analyze_js_file(
             else:
                 line = node.start_point[0] + 1
                 col = node.start_point[1]
-            findings.append(
-                _make_finding(path, line, col, string_value, "high", Severity.WARNING)
-            )
+            findings.append(_make_finding(path, line, col, string_value, "high", Severity.WARNING))
 
     return findings
 
