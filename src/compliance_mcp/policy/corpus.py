@@ -1,4 +1,5 @@
 """Policy corpus loader — reads policies/**/*.md via python-frontmatter."""
+
 from __future__ import annotations
 
 import logging

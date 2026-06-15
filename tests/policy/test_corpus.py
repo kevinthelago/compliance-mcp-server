@@ -1,4 +1,5 @@
 """PA-1: Tests for the policy corpus loader."""
+
 from __future__ import annotations
 
 import textwrap
@@ -109,7 +110,10 @@ class TestRealCorpus:
         rules = load_corpus(policy_dir)
         domains_present = {r.domain for r in rules}
         expected = {
-            PolicyDomain.SECURITY, PolicyDomain.SUPPLY_CHAIN, PolicyDomain.POLICY, PolicyDomain.I18N
+            PolicyDomain.SECURITY,
+            PolicyDomain.SUPPLY_CHAIN,
+            PolicyDomain.POLICY,
+            PolicyDomain.I18N,
         }
         missing = expected - domains_present
         assert not missing, f"no policies found for domains: {missing}"

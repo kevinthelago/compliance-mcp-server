@@ -4,6 +4,7 @@
 (which classifies scan findings by category).  Policy documents are authored
 in one of these five areas; the corpus loader and index use this enum.
 """
+
 from __future__ import annotations
 
 from enum import StrEnum

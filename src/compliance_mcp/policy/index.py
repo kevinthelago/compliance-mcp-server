@@ -1,4 +1,5 @@
 """In-memory index built from a loaded PolicyRule corpus."""
+
 from __future__ import annotations
 
 import re

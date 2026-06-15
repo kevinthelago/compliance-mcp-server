@@ -1,4 +1,5 @@
 """PA-2: Tests for the corpus index and structured-lookup engine."""
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -88,6 +89,7 @@ class TestPolicyEngine:
             for i in range(5)
         ]
         import random
+
         shuffled = rules[:]
         random.shuffle(shuffled)
         engine1 = self._engine(rules)

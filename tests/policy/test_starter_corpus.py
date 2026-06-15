@@ -1,4 +1,5 @@
 """PA-4: Starter corpus completeness tests."""
+
 from __future__ import annotations
 
 import logging
@@ -19,7 +20,10 @@ class TestStarterCorpus:
 
         domains_covered = {r.domain for r in rules}
         required = {
-            PolicyDomain.SECURITY, PolicyDomain.SUPPLY_CHAIN, PolicyDomain.POLICY, PolicyDomain.I18N
+            PolicyDomain.SECURITY,
+            PolicyDomain.SUPPLY_CHAIN,
+            PolicyDomain.POLICY,
+            PolicyDomain.I18N,
         }
         missing = required - domains_covered
         assert not missing, f"domains with no policies: {[d.value for d in missing]}"
@@ -60,8 +64,8 @@ class TestStarterCorpus:
             corpus_logger.removeHandler(handler)
 
         validation_warnings = [m for m in warning_messages if "invalid policy" in m.lower()]
-        assert not validation_warnings, (
-            "corpus has validation errors:\n" + "\n".join(validation_warnings)
+        assert not validation_warnings, "corpus has validation errors:\n" + "\n".join(
+            validation_warnings
         )
 
     def test_all_rules_have_required_fields(self, policy_dir: pathlib.Path) -> None:

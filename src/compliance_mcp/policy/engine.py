@@ -3,6 +3,7 @@
 Ranking: metadata-tag match first (domain + topic exact), then keyword/token overlap.
 A no-match returns an explicit empty result with nearest-topic suggestions.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

@@ -6,6 +6,7 @@ server's FastMCP instance and re-decorating with matching signatures.
 The corpus index is loaded lazily on first call and shared with the
 framework-mapping stream via ``_get_engine()``.
 """
+
 from __future__ import annotations
 
 import pathlib

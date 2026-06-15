@@ -4,6 +4,7 @@ Tests call the engine/tool functions directly (not via MCP transport) to keep
 the suite fast and hermetic.  The server import sets up the FastMCP instance but
 we only invoke the underlying callables.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
