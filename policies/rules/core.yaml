@@ -1,0 +1,81 @@
+# Core org-level compliance rules
+# Each entry maps to a Rule in src/compliance_mcp/policy_rules/schema.py
+
+- id: require-license
+  description: "Repository must contain a LICENSE file"
+  severity: high
+  controls:
+    - OSS-1.1
+  domain: documentation
+  target: "LICENSE*"
+  assertion:
+    type: file-present
+
+- id: require-security-md
+  description: "Repository must contain a SECURITY.md file"
+  severity: medium
+  controls:
+    - DOC-1.1
+  domain: documentation
+  target: "SECURITY.md"
+  assertion:
+    type: file-present
+
+- id: package-json-license
+  description: "package.json must declare a license field"
+  severity: medium
+  controls:
+    - OSS-1.2
+  domain: documentation
+  target: "package.json"
+  assertion:
+    type: structured-path
+    path: license
+    exists: true
+
+- id: no-committed-env
+  description: "No .env files should be committed to the repository"
+  severity: critical
+  controls:
+    - SEC-1.1
+  domain: configuration
+  target: "**/.env"
+  assertion:
+    type: file-absent
+
+- id: dockerfile-non-root
+  description: "Dockerfile must specify a non-root USER"
+  severity: high
+  controls:
+    - SEC-2.1
+  domain: configuration
+  target: "Dockerfile"
+  assertion:
+    type: content-matches
+    pattern: '^USER\s+(?!root\b)'
+    flags: "MULTILINE"
+
+- id: dockerfile-pinned-base
+  description: "Dockerfile base image must be pinned to a digest (@sha256:...)"
+  severity: medium
+  controls:
+    - SEC-2.2
+    - SUPPLY-1.1
+  domain: supply_chain
+  target: "Dockerfile"
+  assertion:
+    type: content-matches
+    pattern: '^FROM\s+\S+@sha256:[a-f0-9]+'
+    flags: "MULTILINE"
+
+- id: ci-runs-tests
+  description: "CI workflow must include a test command"
+  severity: high
+  controls:
+    - QA-1.1
+  domain: configuration
+  target: ".github/workflows/*.yml"
+  assertion:
+    type: content-matches
+    pattern: 'pytest|npm test|cargo test|go test|jest|mocha'
+    flags: ""

@@ -8,7 +8,7 @@ import pytest
 
 from compliance_mcp.models.finding import Domain, Finding, Lens, Severity
 
-FIXTURES_DIR = Path(__file__).parent / "fixtures" / "supply_chain"
+_FIXTURES = Path(__file__).parent / "fixtures"
 
 
 @pytest.fixture()
@@ -26,7 +26,7 @@ def minimal_finding() -> Finding:
 
 @pytest.fixture()
 def supply_chain_fixtures() -> Path:
-    return FIXTURES_DIR
+    return _FIXTURES / "supply_chain"
 
 
 @pytest.fixture()
@@ -37,3 +37,21 @@ def cyclonedx_fixture_json(supply_chain_fixtures: Path) -> str:
 @pytest.fixture()
 def trivy_fixture_json(supply_chain_fixtures: Path) -> str:
     return (supply_chain_fixtures / "trivy_fixture.json").read_text()
+
+
+@pytest.fixture
+def compliant_repo() -> Path:
+    """Path to a fixture repo that satisfies all core rules."""
+    return _FIXTURES / "policy_as_code" / "compliant_repo"
+
+
+@pytest.fixture
+def noncompliant_repo() -> Path:
+    """Path to a fixture repo that violates several core rules."""
+    return _FIXTURES / "policy_as_code" / "noncompliant_repo"
+
+
+@pytest.fixture
+def rules_dir() -> Path:
+    """Path to the project's starter ruleset."""
+    return Path(__file__).parent.parent / "policies" / "rules"

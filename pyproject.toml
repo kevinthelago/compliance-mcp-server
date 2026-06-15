@@ -18,6 +18,7 @@ dependencies = [
     "pyyaml>=6.0",
     "python-frontmatter>=1.1",
     "license-expression>=30.0",
+    "jmespath>=1.0",
 ]
 
 [project.scripts]
