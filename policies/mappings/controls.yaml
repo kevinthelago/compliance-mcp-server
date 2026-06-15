@@ -1,0 +1,378 @@
+version: "1.0"
+
+# ---------------------------------------------------------------------------
+# Framework control definitions
+# Each entry: {title, description}
+# ---------------------------------------------------------------------------
+frameworks:
+  soc2:
+    CC6.1:
+      title: "Logical Access Security"
+      description: >
+        The entity implements logical access security software, infrastructure,
+        and architectures over protected information assets to protect them from
+        security events to meet the entity's objectives.
+    CC6.2:
+      title: "New Internal and External Users — Authentication Credentials"
+      description: >
+        Prior to issuing system credentials and granting system access, the
+        entity registers and authorizes new internal and external users whose
+        access is administered by the entity.
+    CC6.7:
+      title: "Restrict Transmission, Movement, and Removal of Information"
+      description: >
+        The entity restricts the transmission, movement, and removal of
+        information to authorized internal and external users and processes.
+    CC7.1:
+      title: "Detection of Anomalies and Security Events"
+      description: >
+        To meet its objectives, the entity uses detection and monitoring
+        procedures to identify changes to configurations or the environment.
+    CC7.2:
+      title: "Monitor System Components"
+      description: >
+        The entity monitors system components and the operation of those
+        components for anomalies that are indicative of malicious acts, natural
+        disasters, and errors affecting the entity's ability to meet its objectives.
+    CC8.1:
+      title: "Change Management — Authorizes, Designs, Develops, and Implements"
+      description: >
+        The entity authorizes, designs, develops or acquires, configures,
+        documents, tests, approves, and implements changes to infrastructure,
+        data, software, and procedures.
+    CC9.1:
+      title: "Identifies, Selects, and Develops Risk Mitigation Activities"
+      description: >
+        The entity identifies, selects, and develops risk mitigation activities
+        for risks arising from potential business disruptions.
+    A1.1:
+      title: "Availability — Current Processing Capacity"
+      description: >
+        The entity maintains, monitors, and evaluates current processing
+        capacity and use of system components (infrastructure, data, and
+        software) to manage capacity demand.
+
+  iso27001:
+    "A.5.1.1":
+      title: "Policies for information security"
+      description: >
+        A set of policies for information security shall be defined, approved
+        by management, published and communicated to employees and relevant
+        external parties.
+    "A.8.2.3":
+      title: "Handling of assets"
+      description: >
+        Procedures for handling assets shall be developed and implemented in
+        accordance with the information classification scheme adopted by the
+        organization.
+    "A.9.1.1":
+      title: "Access control policy"
+      description: >
+        An access control policy shall be established, documented and reviewed
+        based on business and information security requirements.
+    "A.9.4.3":
+      title: "Password management system"
+      description: >
+        Password management systems shall be interactive and shall ensure
+        quality passwords. Systems shall enforce password changes and disallow
+        reuse.
+    "A.10.1.1":
+      title: "Policy on the use of cryptographic controls"
+      description: >
+        A policy on the use of cryptographic controls for protection of
+        information shall be developed and implemented.
+    "A.12.1.2":
+      title: "Change management"
+      description: >
+        Changes to the organization, business processes, information processing
+        facilities and systems that affect information security shall be
+        controlled.
+    "A.12.6.1":
+      title: "Management of technical vulnerabilities"
+      description: >
+        Information about technical vulnerabilities of information systems
+        being used shall be obtained in a timely fashion, the organization's
+        exposure to such vulnerabilities evaluated and appropriate measures taken.
+    "A.18.1.3":
+      title: "Protection of records"
+      description: >
+        Records shall be protected from loss, destruction, falsification,
+        unauthorized access and unauthorized release, in accordance with
+        legislatory, regulatory, contractual and business requirements.
+
+  hipaa:
+    "164.312(a)(1)":
+      title: "Access Control"
+      description: >
+        Implement technical policies and procedures for electronic information
+        systems that maintain electronic protected health information to allow
+        access only to those persons or software programs that have been granted
+        access rights.
+    "164.312(a)(2)(i)":
+      title: "Unique User Identification"
+      description: >
+        Assign a unique name and/or number for identifying and tracking user
+        identity.
+    "164.312(a)(2)(ii)":
+      title: "Emergency Access Procedure"
+      description: >
+        Establish (and implement as needed) procedures for obtaining necessary
+        electronic protected health information during an emergency.
+    "164.312(b)":
+      title: "Audit Controls"
+      description: >
+        Implement hardware, software, and/or procedural mechanisms that record
+        and examine activity in information systems that contain or use
+        electronic protected health information.
+    "164.312(e)(2)(ii)":
+      title: "Encryption and Decryption"
+      description: >
+        Implement a mechanism to encrypt and decrypt electronic protected
+        health information.
+    "164.314(a)(2)(i)":
+      title: "Business Associate Contracts"
+      description: >
+        The contract between a covered entity and its business associate must
+        provide that the business associate will comply with the applicable
+        requirements of this subpart.
+
+  pci_dss:
+    "6.3.3":
+      title: "All system components protected from known vulnerabilities"
+      description: >
+        All system components are protected from known vulnerabilities by
+        installing applicable security patches/updates. Critical patches must
+        be installed within one month of release.
+    "6.5.1":
+      title: "Injection flaws"
+      description: >
+        Address common coding vulnerabilities in software development
+        processes including injection flaws, particularly SQL injection.
+    "7.2.1":
+      title: "Access control systems are in place"
+      description: >
+        All system components and environments are included in an access
+        control system. The access control system restricts access based on
+        a user's need to know and is set to "deny all" unless specifically
+        allowed.
+    "8.2.1":
+      title: "All individual users are authenticated"
+      description: >
+        All individual non-consumer users and all administrators are
+        authenticated via at least one authentication factor before access
+        is granted to any system component or cardholder data environment.
+    "10.2.1":
+      title: "Audit logs are implemented and retained"
+      description: >
+        Audit logs that capture user activities, exceptions, and security
+        events are retained and available for analysis.
+
+  gdpr:
+    "Art.5(1)(a)":
+      title: "Lawfulness, fairness and transparency"
+      description: >
+        Personal data shall be processed lawfully, fairly and in a transparent
+        manner in relation to the data subject.
+    "Art.5(1)(b)":
+      title: "Purpose limitation"
+      description: >
+        Personal data shall be collected for specified, explicit and legitimate
+        purposes and not further processed in a manner that is incompatible with
+        those purposes.
+    "Art.5(1)(e)":
+      title: "Storage limitation"
+      description: >
+        Personal data shall be kept in a form which permits identification of
+        data subjects for no longer than is necessary for the purposes for which
+        the personal data are processed.
+    "Art.5(1)(f)":
+      title: "Integrity and confidentiality"
+      description: >
+        Personal data shall be processed in a manner that ensures appropriate
+        security of the personal data, including protection against unauthorised
+        or unlawful processing and against accidental loss, destruction or damage,
+        using appropriate technical or organisational measures.
+    "Art.17":
+      title: "Right to erasure ('right to be forgotten')"
+      description: >
+        The data subject shall have the right to obtain from the controller the
+        erasure of personal data concerning him or her without undue delay.
+    "Art.25":
+      title: "Data protection by design and by default"
+      description: >
+        The controller shall implement appropriate technical and organisational
+        measures for ensuring that, by default, only personal data which are
+        necessary for each specific purpose of the processing are processed.
+    "Art.32(1)(a)":
+      title: "Pseudonymisation and encryption of personal data"
+      description: >
+        The controller and the processor shall implement appropriate technical
+        and organisational measures to ensure a level of security appropriate
+        to the risk, including pseudonymisation and encryption of personal data.
+    "Art.32(1)(b)":
+      title: "Ongoing confidentiality, integrity, availability and resilience"
+      description: >
+        The controller and the processor shall implement measures to ensure
+        the ability to ensure the ongoing confidentiality, integrity,
+        availability and resilience of processing systems and services.
+    "Art.33":
+      title: "Notification of a personal data breach"
+      description: >
+        In the case of a personal data breach, the controller shall without
+        undue delay and, where feasible, not later than 72 hours after having
+        become aware of it, notify the personal data breach to the supervisory
+        authority.
+
+# ---------------------------------------------------------------------------
+# Rule-level mappings
+# Keys: rule_id (exact), policy_id (exact), category (matches Domain enum value)
+# Matched in priority order: rule_id > policy_id > category
+# ---------------------------------------------------------------------------
+mappings:
+  # ── Secrets & credentials (gitleaks, semgrep) ──────────────────────────
+  - rule_id: "gitleaks.generic-api-key"
+    controls:
+      soc2: ["CC6.1", "CC6.2"]
+      iso27001: ["A.9.4.3", "A.10.1.1"]
+      hipaa: ["164.312(a)(2)(i)"]
+      pci_dss: ["8.2.1"]
+      gdpr: ["Art.5(1)(f)", "Art.32(1)(b)"]
+
+  - rule_id: "gitleaks.private-key"
+    controls:
+      soc2: ["CC6.1"]
+      iso27001: ["A.9.4.3", "A.10.1.1"]
+      hipaa: ["164.312(a)(2)(i)"]
+      pci_dss: ["8.2.1"]
+      gdpr: ["Art.5(1)(f)"]
+
+  - rule_id: "gitleaks.aws-access-token"
+    controls:
+      soc2: ["CC6.1", "CC6.2"]
+      iso27001: ["A.9.4.3", "A.10.1.1"]
+      hipaa: ["164.312(a)(2)(i)"]
+      pci_dss: ["8.2.1"]
+      gdpr: ["Art.5(1)(f)"]
+
+  - rule_id: "semgrep.hardcoded-secret"
+    controls:
+      soc2: ["CC6.1"]
+      iso27001: ["A.9.4.3"]
+      hipaa: ["164.312(a)(2)(i)"]
+      pci_dss: ["8.2.1"]
+      gdpr: ["Art.5(1)(f)"]
+
+  - rule_id: "semgrep.hardcoded-password"
+    controls:
+      soc2: ["CC6.1", "CC6.2"]
+      iso27001: ["A.9.4.3"]
+      hipaa: ["164.312(a)(2)(i)"]
+      pci_dss: ["8.2.1"]
+      gdpr: ["Art.5(1)(f)", "Art.32(1)(a)"]
+
+  # ── Vulnerabilities (trivy CVEs) ────────────────────────────────────────
+  - rule_id: "trivy.CVE-CRITICAL"
+    controls:
+      soc2: ["CC7.1", "CC8.1"]
+      iso27001: ["A.12.6.1"]
+      pci_dss: ["6.3.3"]
+
+  - rule_id: "trivy.CVE-HIGH"
+    controls:
+      soc2: ["CC8.1"]
+      iso27001: ["A.12.6.1"]
+      pci_dss: ["6.3.3"]
+
+  # ── Policy-as-code rules ─────────────────────────────────────────────────
+  - rule_id: "policy-as-code.no-license"
+    controls:
+      soc2: ["CC8.1"]
+      iso27001: ["A.8.2.3"]
+
+  - rule_id: "policy-as-code.no-security-md"
+    controls:
+      soc2: ["CC9.1"]
+      iso27001: ["A.5.1.1"]
+
+  - rule_id: "policy-as-code.dockerfile-root"
+    controls:
+      soc2: ["CC6.1"]
+      iso27001: ["A.9.1.1"]
+      pci_dss: ["7.2.1"]
+
+  - rule_id: "policy-as-code.committed-env-file"
+    controls:
+      soc2: ["CC6.1", "CC6.2"]
+      iso27001: ["A.9.4.3"]
+      hipaa: ["164.312(a)(2)(i)"]
+      pci_dss: ["8.2.1"]
+      gdpr: ["Art.5(1)(f)"]
+
+  # ── Policy ID mappings (from policy frontmatter) ────────────────────────
+  - policy_id: "gdpr.data-retention"
+    controls:
+      gdpr: ["Art.5(1)(e)", "Art.17"]
+      hipaa: ["164.314(a)(2)(i)"]
+
+  - policy_id: "gdpr.data-encryption"
+    controls:
+      gdpr: ["Art.32(1)(a)", "Art.32(1)(b)"]
+      hipaa: ["164.312(e)(2)(ii)"]
+      pci_dss: ["8.2.1"]
+      soc2: ["CC6.7"]
+
+  - policy_id: "gdpr.breach-notification"
+    controls:
+      gdpr: ["Art.33"]
+      hipaa: ["164.314(a)(2)(i)"]
+      soc2: ["CC9.1"]
+
+  # ── Category-level fallback mappings (by Domain enum value) ────────────
+  - category: "access_control"
+    controls:
+      soc2: ["CC6.1", "CC6.2"]
+      iso27001: ["A.9.1.1"]
+      hipaa: ["164.312(a)(1)"]
+      pci_dss: ["7.2.1"]
+
+  - category: "data_protection"
+    controls:
+      gdpr: ["Art.5(1)(f)", "Art.32(1)(b)"]
+      hipaa: ["164.312(e)(2)(ii)"]
+      soc2: ["CC6.7"]
+
+  - category: "audit_logging"
+    controls:
+      soc2: ["CC7.2"]
+      pci_dss: ["10.2.1"]
+      hipaa: ["164.312(b)"]
+      iso27001: ["A.12.1.2"]
+
+  - category: "supply_chain"
+    controls:
+      soc2: ["CC8.1"]
+      iso27001: ["A.12.6.1", "A.12.1.2"]
+      pci_dss: ["6.3.3"]
+
+  - category: "vulnerability"
+    controls:
+      soc2: ["CC7.1", "CC8.1"]
+      iso27001: ["A.12.6.1"]
+      pci_dss: ["6.3.3"]
+
+  - category: "configuration"
+    controls:
+      soc2: ["CC8.1"]
+      iso27001: ["A.12.1.2"]
+      pci_dss: ["6.3.3"]
+
+  - category: "documentation"
+    controls:
+      soc2: ["CC9.1"]
+      iso27001: ["A.5.1.1"]
+
+  - category: "network_security"
+    controls:
+      soc2: ["CC6.1", "CC6.7"]
+      iso27001: ["A.9.1.1"]
+      pci_dss: ["7.2.1"]

@@ -2,11 +2,11 @@ target-version = "py311"
 line-length = 100
 
 [lint]
-select = ["E", "F", "I", "UP", "ANN", "S", "B", "SIM", "TCH"]
-ignore = ["ANN401", "S603", "TC001", "TC003"]
+select = ["E", "F", "I", "UP", "ANN", "S", "B", "SIM", "TC"]
+ignore = ["ANN401", "S603", "TC001", "TC002", "TC003"]
 
 [lint.per-file-ignores]
-"tests/**" = ["S101", "ANN", "B006"]
+"tests/**" = ["S101", "ANN", "B006", "E501"]
 "src/compliance_mcp/server.py" = ["ANN"]
 
 [format]
