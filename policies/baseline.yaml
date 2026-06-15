@@ -1,0 +1,20 @@
+# Compliance baseline — accepted findings suppressed from gate evaluation
+#
+# Each entry carries:
+#   fingerprint: 16-hex-char stable identifier computed from lens+domain+title+file+line+policy_id
+#   reason:      why this finding is accepted (ticket reference, FP rationale, etc.)
+#
+# Findings matching a fingerprint here are excluded from gate blocking.
+# Entries whose fingerprint no longer appears in scan output are reported as stale.
+#
+# To add an entry: run `compliance-mcp compliance_gate <path>` to get fingerprints,
+# then paste the blocking ones below with a reason.
+
+accepted: []
+
+# Example:
+# accepted:
+#   - fingerprint: "a1b2c3d4e5f60001"
+#     reason: "Accepted pending vendor patch — tracked in SEC-42 (expires 2024-12-31)"
+#   - fingerprint: "deadbeef12345678"
+#     reason: "False positive confirmed by security team 2024-06-01"
