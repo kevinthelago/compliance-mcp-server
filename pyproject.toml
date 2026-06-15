@@ -14,6 +14,8 @@ dependencies = [
     "pydantic>=2.7",
     "pydantic-settings>=2.3",
     "tomli>=2.0; python_version < '3.11'",
+    "pyyaml>=6.0",
+    "license-expression>=30.0",
 ]
 
 [project.scripts]
