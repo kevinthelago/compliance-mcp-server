@@ -1,0 +1,8 @@
+{
+  "name": "compliant-app",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  }
+}
