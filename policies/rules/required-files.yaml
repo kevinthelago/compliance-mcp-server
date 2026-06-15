@@ -1,0 +1,58 @@
+- id: rule-readme-present
+  description: "Repository must have a README.md"
+  severity: medium
+  controls:
+    - SOC2-CC2.2
+  domain: documentation
+  target: "README.md"
+  assertion:
+    type: file-present
+  remediation: "Create a README.md describing the project."
+
+- id: rule-license-present
+  description: "Repository must have a LICENSE file"
+  severity: medium
+  controls:
+    - SOC2-CC9.2
+  domain: documentation
+  target: "LICENSE"
+  assertion:
+    type: file-present
+  remediation: "Add a LICENSE file (MIT, Apache-2.0, etc.)."
+
+- id: rule-security-present
+  description: "Repository must have a SECURITY.md"
+  severity: medium
+  controls:
+    - SOC2-CC2.2
+  domain: documentation
+  target: "SECURITY.md"
+  assertion:
+    type: file-present
+  remediation: "Create SECURITY.md with vulnerability disclosure policy."
+
+- id: rule-no-env-committed
+  description: ".env files with secrets must not be committed"
+  severity: critical
+  controls:
+    - SOC2-CC6.1
+    - ISO27001-A.9.4.3
+  domain: configuration
+  target: ".env"
+  assertion:
+    type: file-absent
+  remediation: "Add .env to .gitignore and remove from history."
+
+- id: rule-dockerfile-nonroot
+  description: "Dockerfile must run as non-root user"
+  severity: high
+  controls:
+    - SOC2-CC6.6
+    - ISO27001-A.12.6.2
+  domain: configuration
+  target: "Dockerfile"
+  assertion:
+    type: content-matches
+    pattern: "^USER (?!root)"
+    flags: "MULTILINE"
+  remediation: "Add USER directive with a non-root user in Dockerfile."

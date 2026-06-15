@@ -1,0 +1,11 @@
+/* PLANTED VIOLATION: physical CSS directional properties (i18n RTL domain) */
+.sidebar {
+  margin-left: 20px;
+  padding-left: 10px;
+  text-align: left;
+}
+
+.nav-item {
+  float: left;
+  margin-right: 8px;
+}
