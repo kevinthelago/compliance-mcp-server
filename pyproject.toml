@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "compliance-mcp-server"
+version = "0.1.0"
+description = "MCP server for compliance scanning — GDPR, SOC2, ISO 27001, and more"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "fastmcp>=2.0",
+    "pydantic>=2.7",
+    "pydantic-settings>=2.3",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.scripts]
+compliance-mcp = "compliance_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/compliance_mcp"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.2",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

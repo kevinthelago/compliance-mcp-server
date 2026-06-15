@@ -1,0 +1,11 @@
+# Compliance MCP Server configuration
+# All values may be overridden via environment variables prefixed with COMPLIANCE_
+# e.g. COMPLIANCE_CORPUS_PATH=/path/to/corpus
+
+[compliance]
+corpus_path = "compliance_corpus"
+enabled_lenses = ["gdpr", "soc2", "iso27001"]
+severity_threshold = "medium"    # minimum severity to report: info | low | medium | high | critical
+required_locales = ["en"]
+concurrency_cap = 8
+lens_timeout_seconds = 60
