@@ -1,0 +1,61 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.4",
+  "version": 1,
+  "serialNumber": "urn:uuid:test-fixture-001",
+  "metadata": {
+    "timestamp": "2026-01-01T00:00:00Z",
+    "component": {
+      "type": "application",
+      "name": "sample-project",
+      "version": "1.0.0"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "requests",
+      "version": "2.28.0",
+      "purl": "pkg:pypi/requests@2.28.0",
+      "licenses": [
+        {"license": {"id": "Apache-2.0"}}
+      ]
+    },
+    {
+      "type": "library",
+      "name": "gpl-lib",
+      "version": "1.0.0",
+      "purl": "pkg:pypi/gpl-lib@1.0.0",
+      "licenses": [
+        {"license": {"id": "GPL-3.0-only"}}
+      ]
+    },
+    {
+      "type": "library",
+      "name": "unknown-lib",
+      "version": "0.1.0",
+      "purl": "pkg:pypi/unknown-lib@0.1.0",
+      "licenses": [
+        {"license": {"name": "Proprietary"}}
+      ]
+    },
+    {
+      "type": "library",
+      "name": "lgpl-lib",
+      "version": "2.1.0",
+      "purl": "pkg:pypi/lgpl-lib@2.1.0",
+      "licenses": [
+        {"license": {"id": "LGPL-2.1-only"}}
+      ]
+    },
+    {
+      "type": "library",
+      "name": "multi-license-lib",
+      "version": "3.0.0",
+      "purl": "pkg:pypi/multi-license-lib@3.0.0",
+      "licenses": [
+        {"expression": "MIT OR Apache-2.0"}
+      ]
+    }
+  ]
+}

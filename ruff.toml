@@ -1,0 +1,13 @@
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E", "F", "I", "UP", "ANN", "S", "B", "SIM", "TCH"]
+ignore = ["ANN401", "S603", "TC001", "TC003"]
+
+[lint.per-file-ignores]
+"tests/**" = ["S101", "ANN", "B006"]
+"src/compliance_mcp/server.py" = ["ANN"]
+
+[format]
+quote-style = "double"

@@ -1,0 +1,19 @@
+# Licenses that require legal review before use (weak copyleft or source-available).
+# A package whose license matches any entry here will produce a MEDIUM finding.
+licenses:
+  - LGPL-2.0-only
+  - LGPL-2.0-or-later
+  - LGPL-2.1-only
+  - LGPL-2.1-or-later
+  - LGPL-3.0-only
+  - LGPL-3.0-or-later
+  - CDDL-1.0
+  - CDDL-1.1
+  - EPL-1.0
+  - EPL-2.0
+  - CC-BY-SA-4.0
+  - CC-BY-4.0
+  - EUPL-1.1
+  - EUPL-1.2
+  - CPOL-1.02
+  - OSL-3.0
