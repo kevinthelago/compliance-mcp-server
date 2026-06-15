@@ -27,13 +27,34 @@ Edit `compliance.toml` or set `COMPLIANCE_*` environment variables:
 | Tool | Description |
 |------|-------------|
 | `query_policy` | Retrieve specific policy text by id |
-| `list_policies` | List all policies, optionally filtered by domain |
+| `list_policies` | List all policies, optionally filtered by domain or lens |
 | `scan_project` | Run all enabled lenses against a project path |
 | `scan_diff` | Run lenses against a git diff (pre-commit / CI gate) |
 | `control_coverage` | Report which controls are met / missing for a project |
 | `explain_control` | Return the full text + rationale for a control |
 | `compliance_gate` | Assert all findings are within thresholds; fail otherwise |
 | `generate_report` | Generate a compliance report in markdown or JSON |
+
+## Policy corpus
+
+Policies live in `policies/` as Markdown files with YAML frontmatter:
+
+```yaml
+---
+id: SEC-001
+domain: security          # organization domain (not Finding.Domain)
+topic: credential-storage
+severity: critical
+controls:
+  - SOC2-CC6.1
+keywords:
+  - credentials
+  - secrets
+locales: []
+---
+
+Policy body text ...
+```
 
 ## Development
 
