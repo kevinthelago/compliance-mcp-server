@@ -1,0 +1,83 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Semgrep",
+          "version": "1.70.0",
+          "rules": [
+            {
+              "id": "python.lang.security.injection.tainted-sql-string",
+              "name": "TaintedSqlString",
+              "shortDescription": {
+                "text": "User input is used in a SQL query without sanitization"
+              },
+              "properties": {
+                "severity": "ERROR",
+                "tags": ["security", "owasp"]
+              }
+            },
+            {
+              "id": "internal.hardcoded-credential",
+              "name": "HardcodedCredential",
+              "shortDescription": {
+                "text": "Hardcoded credential detected"
+              },
+              "properties": {
+                "severity": "ERROR"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "python.lang.security.injection.tainted-sql-string",
+          "message": {
+            "text": "User-controlled data flows into a SQL query without parameterization."
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/db.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 5,
+                  "endLine": 42
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "internal.hardcoded-credential",
+          "message": {
+            "text": "Variable 'password' contains a hardcoded string credential."
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/config.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 1,
+                  "endLine": 10
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

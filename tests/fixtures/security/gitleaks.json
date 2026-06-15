@@ -1,0 +1,42 @@
+[
+  {
+    "RuleID": "aws-access-token",
+    "Description": "AWS Access Key",
+    "StartLine": 5,
+    "EndLine": 5,
+    "StartColumn": 14,
+    "EndColumn": 34,
+    "Match": "AKIAIOSFODNN7EXAMPLE",
+    "Secret": "AKIAIOSFODNN7EXAMPLE",
+    "File": "config/settings.py",
+    "SymlinkFile": "",
+    "Commit": "",
+    "Entropy": 3.58,
+    "Author": "",
+    "Email": "",
+    "Date": "",
+    "Message": "",
+    "Tags": [],
+    "RuleDescription": "Identified a pattern that may indicate AWS credentials"
+  },
+  {
+    "RuleID": "generic-api-key",
+    "Description": "Generic API Key",
+    "StartLine": 12,
+    "EndLine": 12,
+    "StartColumn": 10,
+    "EndColumn": 50,
+    "Match": "api_key = \"sk-test-FAKEKEYFORTEST1234567890\"",
+    "Secret": "sk-test-FAKEKEYFORTEST1234567890",
+    "File": "src/client.py",
+    "SymlinkFile": "",
+    "Commit": "",
+    "Entropy": 4.2,
+    "Author": "",
+    "Email": "",
+    "Date": "",
+    "Message": "",
+    "Tags": [],
+    "RuleDescription": "Detected a Generic API Key"
+  }
+]

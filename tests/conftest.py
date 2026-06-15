@@ -68,3 +68,27 @@ def policy_dir() -> pathlib.Path:
 def tmp_policy_dir(tmp_path: pathlib.Path) -> pathlib.Path:
     """Return a temporary directory for synthetic policy files."""
     return tmp_path / "policies"
+
+
+# ── Security lens fixtures ─────────────────────────────────────────────────
+_SECURITY_FIXTURES = _FIXTURES / "security"
+
+
+@pytest.fixture()
+def sarif_fixture_path() -> pathlib.Path:
+    return _SECURITY_FIXTURES / "sample.sarif.json"
+
+
+@pytest.fixture()
+def sarif_text(sarif_fixture_path: pathlib.Path) -> str:
+    return sarif_fixture_path.read_text()
+
+
+@pytest.fixture()
+def gitleaks_fixture_path() -> pathlib.Path:
+    return _SECURITY_FIXTURES / "gitleaks.json"
+
+
+@pytest.fixture()
+def gitleaks_text(gitleaks_fixture_path: pathlib.Path) -> str:
+    return gitleaks_fixture_path.read_text()

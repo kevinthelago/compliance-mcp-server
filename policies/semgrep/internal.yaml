@@ -1,0 +1,64 @@
+rules:
+  # Detect hardcoded passwords / credentials assigned to well-known variable names
+  - id: internal.hardcoded-credential
+    patterns:
+      - pattern-either:
+          - pattern: $VAR = "..."
+          - pattern: $VAR = '...'
+    pattern-where-python: |
+      import re
+      return bool(re.search(
+        r'(?i)(password|passwd|secret|token|api[_\-]?key|auth[_\-]?key|access[_\-]?key)',
+        vars['$VAR']
+      ))
+    message: >
+      Hardcoded credential in variable '$VAR'. Store secrets in environment
+      variables or a secrets manager (SOC2-CC6.1, ISO27001-A.9.4).
+    languages: [python, javascript, typescript]
+    severity: ERROR
+    metadata:
+      category: security
+      compliance:
+        - SOC2-CC6.1
+        - ISO27001-A.9.4
+      remediation: >
+        Replace with os.environ.get('...') or equivalent secret-manager lookup.
+
+  # Detect direct string-concatenated SQL queries (SQL injection risk)
+  - id: internal.sql-string-concat
+    patterns:
+      - pattern-either:
+          - pattern: cursor.execute($QUERY + ...)
+          - pattern: cursor.execute($QUERY % ...)
+          - pattern: cursor.execute(f"... {$VAR} ...")
+    message: >
+      SQL query built by string concatenation or f-string — risk of SQL injection
+      (OWASP A03, SOC2-CC6.1). Use parameterised queries instead.
+    languages: [python]
+    severity: ERROR
+    metadata:
+      category: security
+      compliance:
+        - OWASP-A03
+        - SOC2-CC6.1
+      remediation: Use cursor.execute(query, (param,)) with parameterised queries.
+
+  # Detect debug flags / print statements that could leak sensitive data
+  - id: internal.debug-leak
+    pattern-either:
+      - pattern: print($X)
+      - pattern: logging.debug($X, ...)
+    pattern-not-inside: |
+      if __name__ == "__main__":
+        ...
+    message: >
+      Debug output found outside of __main__ guard — may leak sensitive data in
+      production (SOC2-CC7.2). Remove or gate behind a debug flag.
+    languages: [python]
+    severity: WARNING
+    metadata:
+      category: security
+      compliance:
+        - SOC2-CC7.2
+      remediation: >
+        Use structured logging at appropriate levels; never log credentials or PII.
