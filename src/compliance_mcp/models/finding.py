@@ -71,7 +71,9 @@ class Finding(BaseModel):
     lens: Lens
     domain: Domain
     rule_id: str = Field(..., description="Lens-scoped rule identifier, e.g. 'gdpr.data-retention'")  # noqa: E501
-    file_path: str = Field(..., description="Relative POSIX path to the file containing the finding")  # noqa: E501
+    file_path: str = Field(
+        ..., description="Relative POSIX path to the file containing the finding"
+    )  # noqa: E501
     line_start: int = Field(..., ge=1)
     line_end: int | None = Field(default=None, ge=1)
 
