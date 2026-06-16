@@ -23,7 +23,7 @@ from compliance_mcp.scan.lens import LensResult, LensStatus
 
 log = logging.getLogger(__name__)
 
-_POLICIES_DIR = Path(__file__).parent.parent.parent.parent.parent / "policies" / "semgrep"
+_POLICIES_DIR = Path(__file__).resolve().parents[3] / "policies" / "semgrep"
 
 
 class SecurityLens:

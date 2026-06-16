@@ -30,7 +30,7 @@ from compliance_mcp.scan.lens import LensResult, LensStatus
 
 log = logging.getLogger(__name__)
 
-_DEFAULT_POLICY_DIR = Path(__file__).parent.parent.parent.parent.parent / "policies" / "licenses"
+_DEFAULT_POLICY_DIR = Path(__file__).resolve().parents[3] / "policies" / "licenses"
 
 
 class SupplyChainLens:
