@@ -14,10 +14,13 @@ from compliance_mcp.scan.orchestrator import LensRunRecord, ScanOrchestrator, Sc
 def get_lenses():  # noqa: ANN201
     """Return all registered LensProtocol implementations.
 
-    Returns an empty list until lens modules are implemented and registered.
-    Patched in tests.
+    Builds the built-in scanner set (security, supply-chain, policy-as-code,
+    i18n).  A scanner that fails to construct is skipped, not fatal.  Patched in
+    tests to substitute deterministic stub lenses.
     """
-    return []
+    from compliance_mcp.scan.builtin import build_default_lenses
+
+    return build_default_lenses(load_settings())
 
 
 # ---------------------------------------------------------------------------

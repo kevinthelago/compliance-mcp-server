@@ -201,3 +201,14 @@ async def generate_report(
         include_passed=include_passed,
     )
     return {"format": "json", "content": content}
+
+
+# ---------------------------------------------------------------------------
+# Registration hook
+# ---------------------------------------------------------------------------
+
+
+def register(mcp) -> None:  # noqa: ANN001
+    """Register the gate/report tools on a FastMCP instance, overriding stubs."""
+    mcp.tool()(compliance_gate)
+    mcp.tool()(generate_report)

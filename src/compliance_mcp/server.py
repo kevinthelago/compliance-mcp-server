@@ -17,7 +17,7 @@ from fastmcp import FastMCP
 
 from compliance_mcp.config import ComplianceSettings, load_settings
 from compliance_mcp.logging import configure_logging, get_logger
-from compliance_mcp.registry import discover_lenses
+from compliance_mcp.registry import discover_lenses, registered_lenses
 
 configure_logging()
 logger = get_logger(__name__)
@@ -193,8 +193,22 @@ def _startup(settings: ComplianceSettings) -> None:
     logger.info("Corpus path: %s", settings.corpus_path)
     logger.info("Enabled lenses: %s", [lns.value for lns in settings.enabled_lenses])
     logger.info("Severity threshold: %s", settings.severity_threshold)
+
+    # Replace the tool stubs with the real implementations.
+    from compliance_mcp.tools import load_tools  # noqa: PLC0415
+
+    load_tools(mcp)
+
+    # Wire the built-in scanners into both execution engines.
     discover_lenses()
-    logger.info("Registered lenses: %s (of %s enabled)", 0, len(settings.enabled_lenses))
+    from compliance_mcp.scan.builtin import register_default_runners  # noqa: PLC0415
+
+    registered = register_default_runners(settings)
+    logger.info(
+        "Registered %s framework runner(s); scanners: %s",
+        registered,
+        [lns.value for lns in registered_lenses()],
+    )
 
 
 def main() -> None:
